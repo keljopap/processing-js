@@ -8,22 +8,69 @@
   <body>
     <h1>Processing.js</h1>
     <script type="text/processing">
-      void setup() {
+      /*void setup() {
         size(400,200);
         textAlign(CENTER, CENTER);
         background(0,0,100);
         fill(255,230,75);
         text("Processing.js", width/2, height/2);
         noLoop();
-      }
+      }*/
 
-      void draw() {
+      // Pressing Control-R will render this sketch.
+
+      int i = 0; 
+      Pimage upvote;
+      Pimage downvote;
+
+      void setup() {  // this is run once.   
+
+          downvote = loadImage("downvote.png");
+          upvote = loadImage("upvote.png");
+
+          // set the background color
+          background(255);
+          
+          // canvas size (Integers only, please.)
+          size(500, 500); 
+            
+          // smooth edges
+          smooth();
+          
+          // limit the number of frames per second
+          frameRate(1);
+          
+          // set the width of the line. 
+          strokeWeight(12);
+      } 
+
+      void draw() {  // this is run repeatedly.  
+
+          // set the color
+          stroke(random(255), random(255), random(255));
+          shininess(7.0);
+          
+          // move over a pixel
+          if (i < width) {
+            i += 77;                    
+            // draw the line
+            ellipse(random(width), random(height), 17, 17);
+          } else {
+              i = 0;
+              blah = floor(random(20));
+              console.log(blah);
+              if (blah % 2 == 1) {
+                image(downvote, random(width), random(height), 25, 25);
+              } else {
+                image(upvote, random(width), random(height), 25, 25);
+              }
+          }
       }
 
       void mouseMoved() {
         stroke(255);
         point(mouseX, mouseY);
-        redraw();
+        //redraw();
       }
 
       void mousePressed() {
